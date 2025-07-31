@@ -1,6 +1,13 @@
 import "./Header.css";
+import Navigation from "../Navigation/Navigation";
+
 function Header() {
-  return <div></div>;
+  return (
+    <header className="header">
+      <div className="header__logo">NewsExplorer</div>
+      <Navigation />
+    </header>
+  );
 }
 
 export default Header;
