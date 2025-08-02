@@ -4,11 +4,26 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0;
+  margin: 0 auto;
   padding: 19px 104px 13px;
+  box-sizing: border-box;
+  position: absolute; /* overlays hero on home page */
+  top: 0;
+  left: 0;
+}
+
+/* Light header (home) */
+.header_light {
   color: white;
   border-bottom: 1px solid #ffffff33;
-  box-sizing: border-box;
+}
+
+/* Dark header (saved-news) */
+.header_dark {
+  position: relative;
+  background-color: white;
+  color: black;
+  border-bottom: 1px solid #e8e8e8;
 }
 
 .header__logo {
@@ -16,4 +31,6 @@
   font-size: 20px;
   line-height: 1.2;
   font-weight: 700;
+  text-decoration: none;
+  color: inherit; /* adapts to light/dark */
 }

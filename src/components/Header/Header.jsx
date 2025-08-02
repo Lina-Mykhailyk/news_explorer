@@ -1,11 +1,21 @@
+import { Link } from "react-router-dom";
 import "./Header.css";
 import Navigation from "../Navigation/Navigation";
 
-function Header({ onSignInClick }) {
+function Header({ isLoggedIn, isSavedNewsPage, onLoginClick, onLogoutClick }) {
   return (
-    <header className="header">
-      <div className="header__logo">NewsExplorer</div>
-      <Navigation onSignInClick={onSignInClick} />
+    <header
+      className={`header ${isSavedNewsPage ? "header_dark" : "header_light"}`}
+    >
+      <Link to="/" className="header__logo">
+        NewsExplorer
+      </Link>
+      <Navigation
+        isLoggedIn={isLoggedIn}
+        isSavedNewsPage={isSavedNewsPage}
+        onLoginClick={onLoginClick}
+        onLogoutClick={onLogoutClick}
+      />
     </header>
   );
 }

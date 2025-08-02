@@ -1,7 +1,7 @@
 import "./NewsCardList.css";
 import NewsCard from "../NewsCard/NewsCard";
 
-function NewsCardList() {
+function NewsCardList({ isSavedNews = false, isLoggedIn }) {
   const cards = [
     {
       id: 1,
@@ -12,6 +12,7 @@ function NewsCardList() {
       source: "Treehugger",
       image:
         "https://images.unsplash.com/photo-1744194210914-0f5b2375645d?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      keyword: "Nature",
     },
     {
       id: 2,
@@ -21,6 +22,7 @@ function NewsCardList() {
       source: "National Geographic",
       image:
         "https://images.unsplash.com/photo-1753087380647-38a2496b60bc?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      keyword: "Environment",
     },
     {
       id: 3,
@@ -30,18 +32,28 @@ function NewsCardList() {
       source: "National Parks Traveler",
       image:
         "https://images.unsplash.com/photo-1750688650017-c3090567942f?q=80&w=977&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      keyword: "Parks",
     },
   ];
 
   return (
     <section className="cards">
-      <h2 className="cards__title">Search results</h2>
+      {/* Show title only on home page */}
+      {!isSavedNews && <h2 className="cards__title">Search results</h2>}
+
       <div className="cards__list">
         {cards.map((card) => (
-          <NewsCard key={card.id} {...card} />
+          <NewsCard
+            key={card.id}
+            {...card}
+            isSavedNews={isSavedNews}
+            isLoggedIn={isLoggedIn}
+          />
         ))}
       </div>
-      <button className="cards__button">Show more</button>
+
+      {/* Show "Show more" button only on home page */}
+      {!isSavedNews && <button className="cards__button">Show more</button>}
     </section>
   );
 }

@@ -1,0 +1,35 @@
+.not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 374px; /* matches provided screenshot height */
+  background-color: #f5f6f7;
+  text-align: center;
+}
+
+.not-found__icon {
+  width: 74px;
+  height: 74px;
+  margin-bottom: 24px;
+  background-image: url("../../images/not-found.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.not-found__title {
+  font-family: "Roboto Slab", serif;
+  font-size: 26px;
+  font-weight: 400;
+  color: #1a1b22;
+  margin: 0 0 16px;
+}
+
+.not-found__text {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  line-height: 1.3;
+  color: #b6bcbf;
+  margin: 0;
+}

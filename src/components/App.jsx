@@ -1,18 +1,31 @@
 import { useState } from "react";
+import {
+  Routes,
+  Route,
+  Navigate,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import "./App.css";
 
+import Header from "./Header/Header";
 import Main from "./Main/Main";
 import About from "./About/About";
 import Footer from "./Footer/Footer";
+import SavedNews from "./SavedNews/SavedNews";
 import RegisterModal from "./RegisterModal/RegisterModal";
 import LoginModal from "./LoginModal/LoginModal";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [serverError, setServerError] = useState("");
 
-  // Simulated register handler (replace with API)
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Simulated register handler
   const handleRegister = (formData) => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -27,6 +40,17 @@ function App() {
     });
   };
 
+  const handleLogin = (data) => {
+    console.log("Logging in", data);
+    setIsLoggedIn(true);
+    setIsLoginOpen(false);
+  };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    navigate("/");
+  };
+
   const handleSwitchToLogin = () => {
     setIsRegisterOpen(false);
     setIsLoginOpen(true);
@@ -37,10 +61,40 @@ function App() {
     setIsRegisterOpen(true);
   };
 
+  // detect saved-news page for Header style
+  const isSavedNewsPage = location.pathname === "/saved-news";
+
   return (
     <div className="app">
-      <Main onSignInClick={() => setIsLoginOpen(true)} />
-      <About />
+      <Header
+        isLoggedIn={isLoggedIn}
+        isSavedNewsPage={isSavedNewsPage}
+        onLoginClick={() => setIsLoginOpen(true)}
+        onLogoutClick={handleLogout}
+      />
+
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Main isLoggedIn={isLoggedIn} />
+              <About />
+            </>
+          }
+        />
+        <Route
+          path="/saved-news"
+          element={
+            isLoggedIn ? (
+              <SavedNews isLoggedIn={isLoggedIn} />
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
+        />
+      </Routes>
+
       <Footer />
 
       {/* Modals */}
@@ -55,7 +109,7 @@ function App() {
       <LoginModal
         isOpen={isLoginOpen}
         onClose={() => setIsLoginOpen(false)}
-        onLogin={(data) => console.log("Logging in", data)}
+        onLogin={handleLogin}
         onSwitchToRegister={handleSwitchToRegister}
         serverError={serverError}
       />

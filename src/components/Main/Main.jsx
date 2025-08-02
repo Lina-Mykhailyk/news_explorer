@@ -1,16 +1,14 @@
 import "./Main.css";
-import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
 import NewsCardList from "../NewsCardList/NewsCardList";
 
-function Main({ onSignInClick }) {
+function Main({ isLoggedIn }) {
   return (
     <main className="main">
-      <div className="main__top">
-        <Header onSignInClick={onSignInClick} />
+      <div className="main__hero">
         <SearchForm />
       </div>
-      <NewsCardList />
+      <NewsCardList isLoggedIn={isLoggedIn} />
     </main>
   );
 }

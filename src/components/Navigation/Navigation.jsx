@@ -1,18 +1,70 @@
+import { Link, useLocation } from "react-router-dom";
 import "./Navigation.css";
 
-function Navigation({ onSignInClick }) {
+function Navigation({
+  isLoggedIn,
+  isSavedNewsPage,
+  onLoginClick,
+  onLogoutClick,
+}) {
+  const location = useLocation();
+
   return (
     <nav className="navigation">
       <ul className="navigation__list">
         <li>
-          <a href="/" className="navigation__link navigation__link_active">
+          <Link
+            to="/"
+            className={`navigation__link ${
+              location.pathname === "/" ? "navigation__link_active" : ""
+            } ${isSavedNewsPage ? "navigation__link_dark" : ""}`}
+          >
             Home
-          </a>
+          </Link>
         </li>
+
+        {isLoggedIn && (
+          <li>
+            <Link
+              to="/saved-news"
+              className={`navigation__link ${
+                location.pathname === "/saved-news"
+                  ? "navigation__link_active"
+                  : ""
+              } ${isSavedNewsPage ? "navigation__link_dark" : ""}`}
+            >
+              Saved articles
+            </Link>
+          </li>
+        )}
+
         <li>
-          <button className="navigation__button" onClick={onSignInClick}>
-            Sign in
-          </button>
+          {isLoggedIn ? (
+            <button
+              className={`navigation__button ${
+                isSavedNewsPage ? "navigation__button_dark" : ""
+              }`}
+              onClick={onLogoutClick}
+            >
+              Elise{" "}
+              <span
+                className={`navigation__logout-icon ${
+                  isSavedNewsPage
+                    ? "navigation__logout-icon_dark"
+                    : "navigation__logout-icon_light"
+                }`}
+              />
+            </button>
+          ) : (
+            <button
+              className={`navigation__button ${
+                isSavedNewsPage ? "navigation__button_dark" : ""
+              }`}
+              onClick={onLoginClick}
+            >
+              Sign in
+            </button>
+          )}
         </li>
       </ul>
     </nav>

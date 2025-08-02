@@ -1,9 +1,10 @@
-.main__top {
+.main__hero {
   background-image: url("../../images/background.png");
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
-  min-height: 576px;
-  width: 100%;
-  box-sizing: border-box;
+  height: 576px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
