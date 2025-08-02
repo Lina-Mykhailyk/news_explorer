@@ -12,12 +12,12 @@ function Footer() {
           TripleTen
         </a>
         <a
-          href="#"
+          href="https://github.com/Lina-Mykhailyk"
           className="footer__icon footer__icon_github"
           aria-label="GitHub"
         />
         <a
-          href="#"
+          href="https://www.facebook.com/tripleten.tech"
           className="footer__icon footer__icon_facebook"
           aria-label="Facebook"
         />

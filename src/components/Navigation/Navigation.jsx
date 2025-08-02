@@ -1,7 +1,6 @@
-import React from "react";
 import "./Navigation.css";
 
-function Navigation() {
+function Navigation({ onSignInClick }) {
   return (
     <nav className="navigation">
       <ul className="navigation__list">
@@ -11,7 +10,9 @@ function Navigation() {
           </a>
         </li>
         <li>
-          <button className="navigation__button">Sign in</button>
+          <button className="navigation__button" onClick={onSignInClick}>
+            Sign in
+          </button>
         </li>
       </ul>
     </nav>

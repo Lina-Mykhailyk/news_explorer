@@ -1,11 +1,11 @@
 import "./Header.css";
 import Navigation from "../Navigation/Navigation";
 
-function Header() {
+function Header({ onSignInClick }) {
   return (
     <header className="header">
       <div className="header__logo">NewsExplorer</div>
-      <Navigation />
+      <Navigation onSignInClick={onSignInClick} />
     </header>
   );
 }
