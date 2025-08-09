@@ -1,5 +1,6 @@
 import "./ModalWithForm.css";
 import { useModalClose } from "../../hooks/useModalClose";
+import { useBodyScrollLock } from "../../hooks/useBodyScrollLock";
 
 function ModalWithForm({
   name,
@@ -14,6 +15,7 @@ function ModalWithForm({
   altLinkText,
   onAltLinkClick,
 }) {
+  useBodyScrollLock(isOpen);
   const handleOverlayClick = useModalClose(isOpen, onClose);
 
   if (!isOpen) return null;

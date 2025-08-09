@@ -27,11 +27,13 @@
 .navigation__link_active::after {
   content: "";
   position: absolute;
-  left: 0;
   bottom: -27px; /* aligns with header border bottom */
-  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% + 30px);
   height: 3px;
   background-color: currentColor;
+  border-radius: 2px; /* optional: soften edges */
 }
 
 .navigation__link_dark {

@@ -1,6 +1,22 @@
+import { useState } from "react";
 import "./SearchForm.css";
 
-function SearchForm() {
+function SearchForm({ onSearch }) {
+  const [query, setQuery] = useState("");
+  const [error, setError] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!query.trim()) {
+      setError("Please enter a keyword");
+      return;
+    }
+
+    setError("");
+    onSearch(query);
+  };
+
   return (
     <section className="search">
       <div className="search__content">
@@ -10,9 +26,11 @@ function SearchForm() {
           account.
         </p>
       </div>
-      <form className="search__form">
+      <form className="search__form" onSubmit={handleSubmit}>
         <input
           type="text"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
           placeholder="Enter topic"
           className="search__input"
         />
@@ -20,6 +38,7 @@ function SearchForm() {
           Search
         </button>
       </form>
+      {error && <span className="search__error">{error}</span>}
     </section>
   );
 }

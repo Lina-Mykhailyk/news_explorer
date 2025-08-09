@@ -1,4 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 import "./Navigation.css";
 
 function Navigation({
@@ -8,6 +10,7 @@ function Navigation({
   onLogoutClick,
 }) {
   const location = useLocation();
+  const currentUser = useContext(CurrentUserContext);
 
   return (
     <nav className="navigation">
@@ -46,7 +49,7 @@ function Navigation({
               }`}
               onClick={onLogoutClick}
             >
-              Elise{" "}
+              {currentUser?.name || "User"}
               <span
                 className={`navigation__logout-icon ${
                   isSavedNewsPage

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./NewsCard.css";
 
 function NewsCard({
@@ -10,45 +9,47 @@ function NewsCard({
   keyword,
   isSavedNews,
   isLoggedIn,
+  isSaved,
   onSave,
   onDelete,
 }) {
-  const [isSaved, setIsSaved] = useState(false);
-
   const handleBookmarkClick = () => {
-    if (!isLoggedIn) return; // Tooltip will handle hover message
-    setIsSaved((prev) => !prev);
-    onSave?.();
-  };
-
-  const handleDeleteClick = () => {
-    onDelete?.();
+    if (!isLoggedIn) return;
+    if (isSaved) {
+      onDelete?.();
+    } else {
+      onSave?.();
+    }
   };
 
   return (
     <article className="card">
       {isSavedNews && <span className="card__keyword">{keyword}</span>}
 
-      {/* Button + tooltip */}
-      <div className="card__bookmark-wrapper">
+      {/* Bookmark/Delete Button + Tooltip */}
+      <div className="card__icon-wrapper">
         {isSavedNews ? (
           <>
             <button
-              className="card__delete"
-              onClick={handleDeleteClick}
+              className="card__icon card__delete"
+              onClick={onDelete}
               type="button"
-            ></button>
+              aria-label="Remove from saved"
+            />
             <span className="card__tooltip">Remove from saved</span>
           </>
         ) : (
           <>
             <button
-              className={`card__bookmark ${
-                isSaved ? "card__bookmark_saved" : ""
+              type="button"
+              className={`card__icon card__bookmark ${
+                isSaved ? "card__bookmark_saved" : "card__bookmark_default"
               }`}
               onClick={handleBookmarkClick}
-              type="button"
-            ></button>
+              aria-label={isSaved ? "Remove bookmark" : "Save article"}
+              aria-pressed={isSaved ? "true" : "false"}
+              disabled={!isLoggedIn}
+            />
             {!isLoggedIn && (
               <span className="card__tooltip">Sign in to save articles</span>
             )}

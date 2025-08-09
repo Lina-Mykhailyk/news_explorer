@@ -1,56 +1,29 @@
-import { useState } from "react";
 import "./SavedNewsCardList.css";
 import NewsCard from "../NewsCard/NewsCard";
 
-function SavedNewsCardList({ isLoggedIn }) {
-  // Initial saved cards (mocked for now)
-  const [savedCards, setSavedCards] = useState([
-    {
-      id: 1,
-      title: "Everyone Needs a Special 'Sit Spot' in Nature",
-      text: "Ever since I read Richard Louv’s influential book...",
-      date: "November 4, 2020",
-      source: "Treehugger",
-      image:
-        "https://images.unsplash.com/photo-1744194210914-0f5b2375645d?q=80",
-      keyword: "Nature",
-    },
-    {
-      id: 2,
-      title: "Nature makes you better",
-      text: "We all know how good nature can make us feel...",
-      date: "February 19, 2019",
-      source: "National Geographic",
-      image:
-        "https://images.unsplash.com/photo-1753087380647-38a2496b60bc?q=80",
-      keyword: "Environment",
-    },
-    {
-      id: 3,
-      title: "Nature makes you better",
-      text: "We all know how good nature can make us feel...",
-      date: "February 19, 2019",
-      source: "National Geographic",
-      image:
-        "https://images.unsplash.com/photo-1753087380647-38a2496b60bc?q=80",
-      keyword: "Environment",
-    },
-  ]);
-
-  const handleDeleteCard = (id) => {
-    setSavedCards((prev) => prev.filter((card) => card.id !== id));
-  };
-
+function SavedNewsCardList({ savedArticles, isLoggedIn, onDeleteArticle }) {
   return (
     <section className="saved-cards">
       <div className="saved-cards__list">
-        {savedCards.map((card) => (
+        {savedArticles.map((article) => (
           <NewsCard
-            key={card.id}
-            {...card}
+            key={article._id}
+            title={article.title}
+            text={article.description || article.text}
+            date={new Date(
+              article.publishedAt || article.date
+            ).toLocaleDateString("en-US", {
+              month: "long",
+              day: "numeric",
+              year: "numeric",
+            })}
+            source={article.source?.name || article.source || "Unknown Source"}
+            image={article.urlToImage || article.image}
+            keyword={article.keyword || ""}
             isSavedNews={true}
             isLoggedIn={isLoggedIn}
-            onDelete={() => handleDeleteCard(card.id)}
+            isSaved={true} // Saved News always shows saved state
+            onDelete={() => onDeleteArticle(article._id)}
           />
         ))}
       </div>
