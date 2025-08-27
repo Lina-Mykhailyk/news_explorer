@@ -18,6 +18,12 @@ module.exports = {
     ],
 
     "react/prop-types": 0,
+
+    // ✅ Ignore unused variables/params starting with "_"
+    "no-unused-vars": [
+      "warn",
+      { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
+    ],
   },
 
   overrides: [

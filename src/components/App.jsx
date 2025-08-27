@@ -177,6 +177,7 @@ function App() {
           isSavedNewsPage={isSavedNewsPage}
           onLoginClick={() => setIsLoginOpen(true)}
           onLogoutClick={handleLogout}
+          onSearch={handleSearch}
         />
 
         <Routes>
@@ -185,7 +186,6 @@ function App() {
             element={
               <Main
                 isLoggedIn={isLoggedIn}
-                onSearch={handleSearch}
                 articles={articles}
                 isLoading={isLoading}
                 searchError={searchError}

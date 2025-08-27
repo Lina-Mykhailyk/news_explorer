@@ -9,9 +9,9 @@
 }
 
 .not-found__icon {
-  width: 74px;
-  height: 74px;
-  margin-bottom: 24px;
+  width: 82.5px;
+  height: 82.5px;
+  margin-bottom: 31.5px;
   background-image: url("../../images/not-found.svg");
   background-repeat: no-repeat;
   background-position: center;
@@ -22,6 +22,7 @@
   font-family: "Roboto Slab", serif;
   font-size: 26px;
   font-weight: 400;
+  line-height: 1.3;
   color: #1a1b22;
   margin: 0 0 16px;
 }
@@ -30,6 +31,14 @@
   font-family: "Roboto", sans-serif;
   font-size: 18px;
   line-height: 1.3;
+  font-weight: 400;
   color: #b6bcbf;
   margin: 0;
+  max-width: 250px;
+}
+
+@media (max-width: 767px) {
+  .not-found {
+    height: 300px;
+  }
 }

@@ -23,6 +23,11 @@
   gap: 40px;
 }
 
+.footer__links {
+  display: flex;
+  gap: 40px;
+}
+
 .footer__link {
   text-decoration: none;
   font-size: 18px;
@@ -32,6 +37,11 @@
 
 .footer__link:hover {
   opacity: 0.7;
+}
+
+.footer__icons {
+  display: flex;
+  gap: 16px;
 }
 
 .footer__icon {
@@ -48,9 +58,45 @@
 
 .footer__icon_facebook {
   background-image: url("../../images/facebook-icon.svg");
-  margin-left: -16px;
 }
 
 .footer__icon_github {
   background-image: url("../../images/github-icon.svg");
+}
+
+@media (max-width: 1023px) {
+  .footer {
+    padding: 20px 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .footer {
+    padding: 20px 16px 22px;
+    display: grid;
+    row-gap: 38px;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "links icons"
+      "copyright copyright";
+  }
+  .footer__nav {
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  .footer__copyright {
+    grid-area: copyright;
+    font-size: 16px;
+  }
+  .footer__links {
+    grid-area: links;
+    display: grid;
+    grid-auto-rows: min-content;
+    row-gap: 24px;
+  }
+  .footer__icons {
+    grid-area: icons;
+    display: flex;
+    gap: 24px;
+  }
 }

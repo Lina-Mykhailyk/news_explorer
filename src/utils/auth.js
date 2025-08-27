@@ -6,7 +6,7 @@ const fakeUser = {
 };
 
 // Register
-export const register = (name, email, password) => {
+export const register = (_name, _email, _password) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve({ data: fakeUser });
@@ -15,7 +15,7 @@ export const register = (name, email, password) => {
 };
 
 // Login
-export const authorize = (email, password) => {
+export const authorize = (_email, _password) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve({ token: "fake-jwt-token-123" });

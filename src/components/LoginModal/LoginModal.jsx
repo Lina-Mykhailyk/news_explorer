@@ -33,9 +33,10 @@ function LoginModal({
       altLinkText="Sign up"
       onAltLinkClick={onSwitchToRegister}
     >
-      <label className="modal__label">
+      <label className="modal__label" htmlFor="login-email">
         Email
         <input
+          id="login-email"
           type="email"
           name="email"
           placeholder="Enter email"
@@ -45,6 +46,7 @@ function LoginModal({
           value={values.email || ""}
           onChange={handleChange}
           onBlur={handleBlur}
+          autoComplete="email"
           required
         />
         {touched.email && errors.email && (
@@ -52,9 +54,10 @@ function LoginModal({
         )}
       </label>
 
-      <label className="modal__label">
+      <label className="modal__label" htmlFor="login-password">
         Password
         <input
+          id="login-password"
           type="password"
           name="password"
           placeholder="Enter password"
@@ -64,6 +67,7 @@ function LoginModal({
           value={values.password || ""}
           onChange={handleChange}
           onBlur={handleBlur}
+          autoComplete="current-password"
           required
         />
         {touched.password && errors.password && (
@@ -72,7 +76,12 @@ function LoginModal({
       </label>
 
       {serverError && (
-        <span className="modal__error modal__error_server">{serverError}</span>
+        <span
+          id="login-server-error"
+          className="modal__error modal__error_server"
+        >
+          {serverError}
+        </span>
       )}
     </ModalWithForm>
   );

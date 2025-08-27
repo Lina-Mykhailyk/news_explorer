@@ -3,17 +3,17 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 282px; /* match design height */
+  height: 282px;
   background-color: #f5f6f7;
   position: relative;
 }
 
 .preloader__circle {
   display: block;
-  width: 50px;
-  height: 50px;
-  border: 4px solid #444;
-  border-bottom-color: #888;
+  width: 74px;
+  height: 74px;
+  border: 1px solid #1a1b22;
+  border-bottom-color: #d1d2d6;
   border-radius: 50%;
   animation: spin 0.75s infinite linear;
   margin-bottom: 24px;
@@ -28,7 +28,14 @@
 .preloader__text {
   font-family: "Roboto", sans-serif;
   font-size: 18px;
+  font-weight: 400;
   line-height: 1.3;
   color: #b6bcbf;
   margin: 0;
+}
+
+@media (max-width: 767px) {
+  .preloader {
+    height: 230px;
+  }
 }

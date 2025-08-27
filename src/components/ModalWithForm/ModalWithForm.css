@@ -18,7 +18,7 @@
   padding: 34px 36px 28px;
   width: 430px;
   position: relative;
-  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
 }
 
 .modal__close-btn {
@@ -104,6 +104,7 @@
   color: #fff;
   font-size: 18px;
   font-weight: 500;
+  line-height: 1.2;
   margin-top: 8px;
   padding: 20px 0;
   border: none;
@@ -111,6 +112,7 @@
   cursor: pointer;
   box-shadow: 0px 5px 15px 0px #0e1a3933;
   transition: background 0.3s;
+  font-family: "Roboto", sans-serif;
 }
 
 .modal__submit-btn:hover:not(:disabled) {
@@ -158,4 +160,65 @@
   background: none;
   border: none;
   cursor: pointer;
+}
+
+@media (max-width: 545px) {
+  /* Overlay covers everything except the header area */
+  .modal {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: flex;
+    align-items: flex-start; /* stick to top of available viewport */
+    overflow: auto; /* scroll when content/keyboard needs it */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .modal__container {
+    position: fixed; /* pin to viewport */
+    top: 56px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    background: #fff;
+    border-radius: 16px 16px 0 0;
+    padding: 16px 16px 0;
+    box-sizing: border-box;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .modal__close-btn {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    transform: none;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    cursor: pointer;
+    z-index: 2000; /* above header & overlay */
+  }
+
+  .modal__title {
+    margin: 0 0 18px;
+  }
+  .modal__input {
+    font-size: 12px;
+    padding: 8px 0;
+  }
+  .modal__input::placeholder {
+    font-size: 14px;
+  }
+  .modal__submit-btn {
+    margin-top: -8px;
+  }
 }

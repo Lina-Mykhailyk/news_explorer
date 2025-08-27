@@ -1,29 +1,17 @@
 .header {
   width: 100%;
+  box-sizing: border-box;
+}
+
+.header__top {
   max-width: 1440px;
+  margin: 0 auto;
+  padding: 19px 104px 13px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 auto;
-  padding: 19px 104px 13px;
   box-sizing: border-box;
-  position: absolute; /* overlays hero on home page */
-  top: 0;
-  left: 0;
-}
-
-/* Light header (home) */
-.header_light {
-  color: white;
   border-bottom: 1px solid #ffffff33;
-}
-
-/* Dark header (saved-news) */
-.header_dark {
-  position: relative;
-  background-color: white;
-  color: black;
-  border-bottom: 1px solid #e8e8e8;
 }
 
 .header__logo {
@@ -33,4 +21,47 @@
   font-weight: 700;
   text-decoration: none;
   color: inherit; /* adapts to light/dark */
+}
+
+.header_home {
+  position: relative;
+  color: white;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../../images/background.jpg") center / cover no-repeat;
+}
+
+.header_dark {
+  position: relative;
+  background-color: white;
+  color: black;
+  border-bottom: 1px solid #d1d2d6;
+}
+
+.header__hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 0;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1023px) {
+  .header__top {
+    padding: 14px 40px 12px;
+  }
+  .header__hero {
+    padding: 38px 0 28px;
+  }
+}
+
+@media (max-width: 767px) {
+  .header__top {
+    padding: 16px;
+  }
+  .header__hero {
+    padding: 30px 16px 12px;
+  }
+  .header__logo {
+    font-size: 16px;
+  }
 }

@@ -18,7 +18,7 @@
 
 .cards__list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   width: 100%;
   justify-items: center;
@@ -26,7 +26,7 @@
 }
 
 .cards__button {
-  padding: 20px 98px;
+  padding: 20px 0;
   width: 288px;
   margin: 0 auto;
   font-size: 18px;
@@ -42,4 +42,45 @@
 
 .cards__button:hover {
   background-color: #e8e8e8;
+}
+
+@media (max-width: 1023px) {
+  .cards {
+    padding: 40px;
+  }
+
+  .cards__title {
+    font-size: 30px;
+    margin-bottom: 32px;
+  }
+
+  .cards__list {
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+
+  .cards__button {
+    width: 240px;
+    padding: 16px 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .cards {
+    padding: 32px 16px 24px;
+  }
+
+  .cards__title {
+    margin-bottom: 58px;
+  }
+
+  .cards__list {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .cards__button {
+    width: 288px;
+  }
 }

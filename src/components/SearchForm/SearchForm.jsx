@@ -28,6 +28,8 @@ function SearchForm({ onSearch }) {
       </div>
       <form className="search__form" onSubmit={handleSubmit}>
         <input
+          id="search-query"
+          name="query"
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
@@ -38,7 +40,15 @@ function SearchForm({ onSearch }) {
           Search
         </button>
       </form>
-      {error && <span className="search__error">{error}</span>}
+      {/* Always render error slot to avoid layout shift */}
+      <span
+        id="search-error"
+        className={`search__error ${error ? "search__error_show" : ""}`}
+        aria-live="polite"
+        role="status"
+      >
+        {error || "\u00A0"}
+      </span>
     </section>
   );
 }

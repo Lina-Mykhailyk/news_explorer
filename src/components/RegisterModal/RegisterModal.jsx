@@ -77,11 +77,13 @@ function RegisterModal({
         ) : (
           <>
             <h2 className="modal__title">Sign up</h2>
+
             <form className="modal__form" onSubmit={handleSubmit} noValidate>
               {/* Email */}
-              <label className="modal__label">
+              <label className="modal__label" htmlFor="register-email">
                 Email
                 <input
+                  id="register-email"
                   type="email"
                   name="email"
                   placeholder="Enter email"
@@ -96,14 +98,17 @@ function RegisterModal({
                   required
                 />
                 {touched.email && errors.email && (
-                  <span className="modal__error">{errors.email}</span>
+                  <span id="register-email-error" className="modal__error">
+                    {errors.email}
+                  </span>
                 )}
               </label>
 
               {/* Password */}
-              <label className="modal__label">
+              <label htmlFor="register-password" className="modal__label">
                 Password
                 <input
+                  id="register-password"
                   type="password"
                   name="password"
                   placeholder="Enter password"
@@ -118,14 +123,17 @@ function RegisterModal({
                   required
                 />
                 {touched.password && errors.password && (
-                  <span className="modal__error">{errors.password}</span>
+                  <span id="register-password-error" className="modal__error">
+                    {errors.password}
+                  </span>
                 )}
               </label>
 
               {/* Username */}
-              <label className="modal__label">
+              <label className="modal__label" htmlFor="register-username">
                 Username
                 <input
+                  id="register-username"
                   type="text"
                   name="username"
                   placeholder="Enter your username"
@@ -140,12 +148,17 @@ function RegisterModal({
                   required
                 />
                 {touched.username && errors.username && (
-                  <span className="modal__error">{errors.username}</span>
+                  <span id="register-username-error" className="modal__error">
+                    {errors.username}
+                  </span>
                 )}
               </label>
 
               {serverError && (
-                <span className="modal__error modal__error_server">
+                <span
+                  id="register-server-error"
+                  className="modal__error modal__error_server"
+                >
                   {serverError}
                 </span>
               )}
