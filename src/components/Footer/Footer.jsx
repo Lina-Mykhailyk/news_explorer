@@ -7,7 +7,11 @@ function Footer() {
       <p className="footer__copyright">© 2025 News Explorer | News API</p>
       <nav className="footer__nav">
         <div className="footer__links">
-          <Link to="/" className="footer__link">
+          <Link
+            to="/"
+            className="footer__link"
+            onClick={() => window.scrollTo(0, 0)}
+          >
             Home
           </Link>
           <a

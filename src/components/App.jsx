@@ -28,7 +28,6 @@ function App() {
   // Auth state
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
-  const [authChecked, setAuthChecked] = useState(false);
 
   // Modals
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
@@ -46,7 +45,7 @@ function App() {
   // Current search keyword
   const [currentKeyword, setCurrentKeyword] = useState("");
 
-  // Show-more state
+  // Show-more state (PERSISTS across modals/tabs)
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE);
 
   const navigate = useNavigate();
@@ -55,10 +54,7 @@ function App() {
   // --- Auth stub check ---
   useEffect(() => {
     const token = localStorage.getItem("jwt");
-    if (!token) {
-      setAuthChecked(true);
-      return;
-    }
+    if (!token) return;
 
     checkToken(token)
       .then((res) => {
@@ -71,8 +67,7 @@ function App() {
         setIsLoggedIn(false);
         setCurrentUser(null);
         localStorage.removeItem("jwt");
-      })
-      .finally(() => setAuthChecked(true));
+      });
   }, []);
 
   // --- Auth handlers ---
@@ -197,7 +192,6 @@ function App() {
                 onSaveArticle={handleSaveArticle}
                 onDeleteArticle={handleDeleteArticle}
                 savedArticles={savedArticles}
-                // Show more props:
                 visibleCount={visibleCount}
                 hasMore={hasMore}
                 onShowMore={handleShowMore}
@@ -207,7 +201,7 @@ function App() {
           <Route
             path="/saved-news"
             element={
-              !authChecked ? null : isLoggedIn ? (
+              isLoggedIn ? (
                 <SavedNews
                   isLoggedIn={isLoggedIn}
                   savedArticles={savedArticles}
